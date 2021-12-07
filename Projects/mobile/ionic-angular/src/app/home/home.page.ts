@@ -12,8 +12,18 @@ export class HomePage implements OnInit {
   todos$: Todo[] = [];
   validateForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private todoService: TodoService, private data: DataService) {
-    sumbitForm(value)
+  constructor(private fb: FormBuilder, private todoService: TodoService, private data: DataService) {};
+
+  submitForm(value: { title: string; completed: false}): void {
+    for(const key in this.validateForm.controls) {
+      if(this.validateForm.controls.hasOwnProperty(key)){
+        this.validateForm.controls[key].markAsDirty();
+        this.validateForm.controls[key].updateValueAndValidity();
+      }
+    }
+
+    value.completed = false;
+    console.log('Submitted todo');
   }
 
   ngOnInit() {

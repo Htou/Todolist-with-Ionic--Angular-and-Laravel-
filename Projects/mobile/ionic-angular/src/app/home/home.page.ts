@@ -32,15 +32,19 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
+    this.todoService.findAll().then((res) => {
+      this.todos$ = res.data;
+    });
     this.validateForm = this.fb.group({
       title: [null, Validators.required]
     });
   }
 
   refresh(ev) {
-    setTimeout(() => {
+    this.todoService.findAll().then((res) => {
+      this.todos$ = res.data;
       ev.detail.complete();
-    }, 3000);
+    });
   }
 
   getMessages(): Message[] {

@@ -24,6 +24,11 @@ export class HomePage implements OnInit {
 
     value.completed = false;
     console.log('Submitted todo');
+    this.todoService.create(value).then(() => {
+      this.todoService.findAll().then((res) => {
+        this.todos$ = res.data;
+      });
+    });
   }
 
   ngOnInit() {

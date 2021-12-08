@@ -52,6 +52,15 @@ export class HomePage implements OnInit {
     });
   };
 
+  delete = (todo: Todo) => {
+    console.log('delete', todo);
+    this.todoService.delete(todo.id).then(() => {
+      this.todoService.findAll().then(res => {
+        this.todos$ = res.data;
+      });
+    });
+  };
+
   refresh(ev) {
     this.todoService.findAll().then((res) => {
       this.todos$ = res.data;

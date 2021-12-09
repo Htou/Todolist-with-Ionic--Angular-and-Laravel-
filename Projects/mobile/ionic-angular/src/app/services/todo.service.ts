@@ -10,7 +10,7 @@ export interface Todo{
   providedIn: 'root',
 })
 export class TodoService {
-  private resourceURL = 'http://localhost:8000/todos';
+  private resourceURL = 'http://localhost/api/todos';
 
   constructor() {}
 
